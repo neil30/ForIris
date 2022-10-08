@@ -24,6 +24,12 @@
 
 <script>
     function mainFunc() {
+        var audio = new Audio("CrossingField.mp3");
+        audio.muted = true;
+        document.body.addEventListener("mousemove", function () {
+            audio.play()
+        })
+
         Swal.fire({
             title: 'Hello dear Potato',
             text: "Musta, buhay ka pa ba?",
@@ -271,7 +277,7 @@
 
     function dialog16() {
         Swal.fire({
-            html: 'Yun lang, final na talaga toh. Hahahaha bye.'
+            html: 'Yun lang, final na talaga toh. Hahahaha bye. Sensiya na sa background.'
                 + '<img src="200w.gif" alt="">',
             showCancelButton: false,
             confirmButtonColor: '#3085d6',
