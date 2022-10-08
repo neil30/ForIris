@@ -1,0 +1,63 @@
+* {
+    outline: none;
+    user-select: none;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Raleway', 'Microsoft JhengHei', Arial, sans-serif;
+    overflow: hidden;
+}
+
+#main {
+    height: 100vh;
+    background-color: #0a1929;
+    overflow: hidden;
+}
+
+.container {
+    height: 100%;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+}
+
+.bg {
+    height: 612px;
+    width: 400px;
+    margin: auto;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    background-image: url("press.jpg");
+    position: relative;
+}
+
+.title {
+    position: absolute;
+    bottom: 20px;
+    text-align: center;
+}
+
+h1 {
+    color: green;
+}
+
+button {
+    background-color: #353866;
+    font-size: 25px;
+    color: #f16fb0;
+    border-radius: 100px;
+    height: 70px;
+    width: 380px;
+    border: 0;
+    outline: 0;
+    transition: 0.3s;
+    box-shadow: 2px 5px 10px #222222;
+}
+
+button:hover {
+    background-color: #1c1e3a;
+}
