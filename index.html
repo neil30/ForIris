@@ -13,7 +13,7 @@
         <div class="container">
             <div class="bg">
                 <div class="title">
-                    <button onclick="mainFunc();">Tap here please.</button>
+                    <button id="taoPo">Tap here please.</button>
                 </div>
             </div>
         </div>
@@ -21,14 +21,51 @@
 </body>
 
 </html>
+<script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-app.js";
 
-<script>
+    const firebaseConfig = {
+        apiKey: "AIzaSyAO6PnDblnUFOAJam93hJPYb3e3pcgI2rE",
+        authDomain: "foriris-98117.firebaseapp.com",
+        databaseURL: "https://foriris-98117-default-rtdb.firebaseio.com",
+        projectId: "foriris-98117",
+        storageBucket: "foriris-98117.appspot.com",
+        messagingSenderId: "960061012012",
+        appId: "1:960061012012:web:4ec7e54d8bc109f96cb989",
+        measurementId: "G-NDXW65WT58"
+    };
+
+    const app = initializeApp(firebaseConfig);
+
+    import { getDatabase, ref, set, child, get, update }
+        from "https://www.gstatic.com/firebasejs/9.6.10/firebase-database.js";
+
+    const db = getDatabase();
+
+    const mayTao = document.getElementById('taoPo');
+    mayTao.addEventListener("click", addTao);
+
+    function addTao() {
+        const dbRef = ref(db);
+
+        get(child(dbRef, "Count")).then((snapshot) => {
+            var curNumber = snapshot.val().number;
+            var count = parseInt(curNumber) + 1;
+            update(ref(db, "Count"), {
+                number: count,
+            })
+                .then(() => {
+                    mainFunc();
+                })
+        });
+    }
+
     function mainFunc() {
-        var audio = new Audio("CrossingField.mp3");
+        /*var audio = new Audio("CrossingField.mp3");
         audio.muted = true;
         document.body.addEventListener("mousemove", function () {
             audio.play()
-        })
+        })*/
 
         Swal.fire({
             title: 'Hello dear Potato',
@@ -156,24 +193,9 @@
     }
 
     // Third Dialog
-    function dialog8() {
-        Swal.fire({
-            text: "I'll never forget those sleepless nights na nagrarant lang tayo sa kung gaano kalala ang pagpapahirap satin, from school activies, OJT, at pati pang ba bash sa mga profs. Until we graduated hahaha.",
-            showCancelButton: false,
-            confirmButtonColor: '#3085d6',
-            confirmButtonText: 'Next please'
-        }).then((result) => {
-            if (result.isConfirmed) {
-                dialog9();
-            }
-        })
-    }
-
-    // Third Dialog
     function dialog9() {
         Swal.fire({
-            html: 'Eto lang pic ang nakuha ko kasama ka, hehe but yeah happy happy ako jan. Gaya gaya ka pa nga nang kulay nang panloob eh haist.'
-                + '<img src="hehe.jpg" alt="">',
+            text: "I'll never forget those sleepless nights na nagrarant lang tayo sa kung gaano kalala ang pagpapahirap satin, from school activies, OJT, at pati pang ba bash sa mga profs. Until we graduated hahaha.",
             showCancelButton: false,
             confirmButtonColor: '#3085d6',
             confirmButtonText: 'Next please'
@@ -187,7 +209,8 @@
     // Third Dialog
     function dialog10() {
         Swal.fire({
-            text: "Andrama syet, nagso'sorry lang dami pang sinasabi noh. Sa birthday mo pa dapat ko gagawin to eh. Kaso mukang di na aabot HAHAHAHA ang baliw ko kasi.",
+            html: 'Eto lang pic ang nakuha ko kasama ka, hehe but yeah happy happy ako jan. Gaya gaya ka pa nga nang kulay nang panloob eh haist.'
+                + '<img src="hehe.jpg" alt="">',
             showCancelButton: false,
             confirmButtonColor: '#3085d6',
             confirmButtonText: 'Next please'
@@ -198,9 +221,10 @@
         })
     }
 
+    // Third Dialog
     function dialog11() {
         Swal.fire({
-            text: "Pero sorry talaga ah. Tingin ko kasi madami pang gumugulo sa isip mo ngayon, and wala pa sa isip mo kausapin ulit ako hahaha. Kaya take your time muna.",
+            text: "Andrama syet, nagso'sorry lang dami pang sinasabi noh. Sa birthday mo pa dapat ko gagawin to eh. Kaso mukang di na aabot HAHAHAHA ang baliw ko kasi.",
             showCancelButton: false,
             confirmButtonColor: '#3085d6',
             confirmButtonText: 'Next please'
@@ -213,7 +237,7 @@
 
     function dialog12() {
         Swal.fire({
-            text: "Galingan mo sa trabaho mo, mapo promote ka din. Abangan ko talaga makita name mo sa mga biggest companies sa Pilipinas. Yiiee naksss hahahahaha.",
+            text: "Pero sorry talaga ah. Tingin ko kasi madami pang gumugulo sa isip mo ngayon, and wala pa sa isip mo kausapin ulit ako hahaha. Kaya take your time muna.",
             showCancelButton: false,
             confirmButtonColor: '#3085d6',
             confirmButtonText: 'Next please'
@@ -226,7 +250,7 @@
 
     function dialog13() {
         Swal.fire({
-            text: "Ingat palagi and God bless you more. Simba ka palagi, para mabawasan kasalanan mo. Jk hahahaha.",
+            text: "Galingan mo sa trabaho mo, mapo promote ka din. Abangan ko talaga makita name mo sa mga biggest companies sa Pilipinas. Yiiee naksss hahahahaha.",
             showCancelButton: false,
             confirmButtonColor: '#3085d6',
             confirmButtonText: 'Next please'
@@ -239,7 +263,7 @@
 
     function dialog14() {
         Swal.fire({
-            text: "Btw, gaano ba kalayo sa kabihasnan yang office nyo? Ayaw tumanggap nang mga rider nang order jan nung tinatry ko padalhan ka nang foods eh. HAHAHAHAHAHA.",
+            text: "Ingat palagi and God bless you more. Simba ka palagi, para mabawasan kasalanan mo. Jk hahahaha.",
             showCancelButton: false,
             confirmButtonColor: '#3085d6',
             confirmButtonText: 'Next please'
@@ -249,9 +273,10 @@
             }
         })
     }
+
     function dialog15() {
         Swal.fire({
-            text: "So yun lang, yoko na pahabain pa, baka mabored ka na. Apaka corny ko talaga syet kahit ako na cringe na ako sa sarili ko HAHAHAHAHA. Sorry, haha paulit ulit?",
+            text: "Btw, gaano ba kalayo sa kabihasnan yang office nyo? Ayaw tumanggap nang mga rider nang order jan nung tinatry ko padalhan ka nang foods eh. HAHAHAHAHAHA.",
             showCancelButton: false,
             confirmButtonColor: '#3085d6',
             confirmButtonText: 'Next please'
@@ -261,10 +286,9 @@
             }
         })
     }
-
     function dialog16() {
         Swal.fire({
-            text: "Basta dito lang ako palagi if you need mag rant, magpabili nang ticket, magpa drawing, mang asar, pwede mo ko sapakin kapag gusto mong manapak. Charot lang hahahaha.",
+            text: "So yun lang, yoko na pahabain pa, baka mabored ka na. Apaka corny ko talaga syet kahit ako na cringe na ako sa sarili ko HAHAHAHAHA. Sorry, haha paulit ulit?",
             showCancelButton: false,
             confirmButtonColor: '#3085d6',
             confirmButtonText: 'Next please'
@@ -275,7 +299,20 @@
         })
     }
 
-    function dialog16() {
+    function dialog17() {
+        Swal.fire({
+            text: "Basta dito lang ako palagi if you need mag rant, magpabili nang ticket, magpa drawing, mang asar, pwede mo ko sapakin kapag gusto mong manapak. Charot lang hahahaha.",
+            showCancelButton: false,
+            confirmButtonColor: '#3085d6',
+            confirmButtonText: 'Next please'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                dialog18();
+            }
+        })
+    }
+
+    function dialog18() {
         Swal.fire({
             html: 'Yun lang, final na talaga toh. Hahahaha bye. Sensiya na sa background.'
                 + '<img src="200w.gif" alt="">',
@@ -284,7 +321,7 @@
             confirmButtonText: 'Bye.'
         }).then((result) => {
             if (result.isConfirmed) {
-                dialog17();
+                dialog19();
             }
         })
     }
